@@ -22,3 +22,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Running docker command to start the app:
+
+docker build -t dockerize-vuejs-app . 
+
+docker run -it -p 8080:80 --rm --name dockerize-vuejs-app-1 dockerize-vuejs-app
