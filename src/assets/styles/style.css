@@ -30,8 +30,8 @@ html {
       min-width: 100%;
   }
 
-  .collapse {
-      justify-content: end;
+  .collapse.navbar.collapse.show {
+      justify-content: end!important;
   }
   
   :root {
