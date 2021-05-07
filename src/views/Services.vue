@@ -1,19 +1,17 @@
 <template>
   <div class="info">
-    <h1>Info page</h1>
-        <CustomComponent msg="Testing2" />
-
+    <ServicesComponent />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CustomComponent from "@/components/CustomComponent.vue";
+import ServicesComponent from "@/components/ServicesComponent.vue";
 
 export default {
   name: "Info",
   components: {
-    CustomComponent,
+    ServicesComponent,
   },
 };
 </script>
