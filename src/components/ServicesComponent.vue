@@ -3,7 +3,7 @@
         <div class="col-md-5 p-lg-5 mx-auto my-5">
           <h1 class="display-4 fw-normal">Top Jobs Europe</h1>
           <p class="lead fw-normal">Connects you or your company to the right person on the right moment.</p>
-          <a class="btn btn-outline-secondary" href="/pages/howItWorks">How it works</a>
+          <a class="btn btn-outline-secondary btn-lg" type="button" href="/how">How it works</a>
         </div>
         <img :src="imageHands" class="img-fluid" alt="Connecting puzzel hands">
         <div class="product-device shadow-sm d-none d-md-block"></div>
@@ -19,7 +19,7 @@
           <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
         </div>
         <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 p-3">
+          <div class="my-3 p-3 text-dark">
             <h2 class="display-5">Recruitment help</h2>
             <p class="lead">We can help you for the recruitment process.</p>
           </div>
@@ -31,7 +31,7 @@
       <img :src= "imageConnect" class="img-fluid" alt="Connecting people"></div>
       <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3 justify-content-center">
         <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 p-3">
+          <div class="my-3 p-3 text-dark">
             <h2 class="display-5">Review your CV</h2>
             <p class="lead">Connect with recruiters and ask for professional CV review.</p>
           </div>

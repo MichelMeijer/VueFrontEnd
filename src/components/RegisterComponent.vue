@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row cols-1 row-cols-lg-3 py-3 my-5 gy-3 align-items-center">
       <!-- register-recruiter -->
-       <div class="col order-1">
+       <div class="col-lg order-1">
     <div class="card shadow p-3 mb-5 text-center border-4">
      <div class="container mt-2 p-2">
      <div class="card-title bg-transparent lead h3">For recruiters</div>
@@ -18,9 +18,9 @@
      </div>
     </div>
     </div>
-    <form-sign-up></form-sign-up>
+
       <!-- register-service -->
-      <div class="col order-2">
+      <div class="col-lg order-2">
       <div class="card shadow p-3 mb-5 text-center border-4">
       <div class="container mt-2 p-2">
       <div class="card-title bg-transparent lead h3">For recruitment services</div>
@@ -30,14 +30,15 @@
       </div>
           <div class="card-footer mx-auto bg-transparent">
           <!-- Button trigger modal -->
-            <button type="button" aria-label="Register button" id="company" @click="setAccountType('company')" class="btn btn-outline-success h5" data-bs-toggle="modal" data-bs-target="#myModal">REGISTER</button>
+            <button role="button" aria-label="Register button" id="recruiter" @click="showModal" class="btn btn-outline-success h5" data-bs-toggle="modal" data-bs-target="#myModal">REGISTER</button>
+          <Register v-show="isModalVisible" @close="closeModal" />
           </div>
         </div>
       </div>
     </div>
-    <form-sign-up></form-sign-up>
+
       <!-- register-jobseeker -->
-      <div class="col order-3">
+      <div class="col-lg order-3">
       <div class="card shadow p-3 mb-5 text-center border-4">
       <div class="container mt-2 p-2">
       <div class="card-title bg-transparent lead h3">For jobseekers</div>
@@ -47,13 +48,13 @@
           </div>
           <div class="card-footer mx-auto bg-transparent">
           <!-- Button trigger modal -->
-            <button type="button" aria-label="Register button" id="jobseekerReg" @click="setAccountType('jobseeker')" class="btn btn-outline-success h5" 
-            data-bs-toggle="modal" data-bs-target="#myModal">SIGN UP</button>
+            <button role="button" aria-label="Register button" id="recruiter" @click="showModal" class="btn btn-outline-success h5" data-bs-toggle="modal" data-bs-target="#myModal">SIGN UP</button>
+          <Register v-show="isModalVisible" @close="closeModal" />
           </div>
         </div>
       </div>
     </div>
-    <form-sign-up></form-sign-up>
+
       <div id="accountType" hidden></div>
     </div>
   </div>

@@ -15,7 +15,7 @@
         <p>You can create your free account directly from our Home page or Register page. After you're successfully registered, you can login and use our services.
         For more information about our services, you can make a quick check on Services page. We offer three different options on the job platform.
         There is a space for professionals looking for a job and recruiters and companies looking for the right candidates.</p>
-        <button class="btn btn-outline-secondary btn-lg" type="button">Back to Home</button>
+        <a class="btn btn-outline-secondary btn-lg" type="button" href="/">Back to Home</a>
       </div>
     </div>
     <div class="p-4 p-md-5 mb-4 d-flex bg-transparent">
