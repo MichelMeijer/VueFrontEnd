@@ -20,9 +20,9 @@
             <h1 class="h3">Seek and be hired</h1>
             <h2 class="lead text-muted p-2">if you're looking for a new challenge</h2>
             <!-- Button trigger modal -->
-            <button type="button" id="jobseekerHome" class="btn btn-success" aria-label="Register button" data-bs-toggle="modal" data-bs-target="#myModal">REGISTER</button>
+            <button role="button" aria-label="Register button" id="recruiter" @click="showModal" class="btn btn-success h5" data-bs-toggle="modal" data-bs-target="#myModal">REGISTER</button>
+          <Register v-show="isModalVisible" @close="closeModal" />
           </div>
-          <!-- <form-sign-up></form-sign-up> --> 
         </div>
     </div>
     <hr class="rounded">
@@ -35,16 +35,27 @@
 <script>
 import HeaderImg from "@/assets/img/headerPic.jpg";
 import SearchMenu from "./TheSearchMenu.vue";
+import Register from '@/components/RegForm.vue';
 
 export default {
   name: 'home',
   data: function () {
     return {
-        imageHeader: HeaderImg
+        imageHeader: HeaderImg,
+        isModalVisible: false,
   }
   },
   components: {
       SearchMenu,
+      Register
+  },
+  methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
     }
+    },
 }
 </script>

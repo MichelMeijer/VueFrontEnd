@@ -1,11 +1,16 @@
 <template>
   <div class="login">
-    <h1>login</h1>
+    <LogModal />
   </div>
 </template>
 
 <script>
+import LogModal from '@/components/LogForm.vue';
+
 export default {
-  name: "login"
+  name: "login",
+  components: {
+  LogModal
+  }
 }
 </script>

@@ -16,11 +16,12 @@
           <li class="nav-item">
             <router-link class="nav-link home" id="services" @click="toggleNavbar()" to="/services">Services</router-link>
           </li>
-        <!--  <li class="nav-item"> -->
-          <!--  <router-link class="nav-link home" id="login" @click="toggleNavbar()" to="#" type="button" aria-label="Login button">Login</router-link> -->
-         <!-- </li><form-login></form-login> -->
           <li class="nav-item">
             <router-link class="nav-link home" id="register" @click="toggleNavbar()" to="/register">Register</router-link>
+          </li>
+          <li class="nav-item">
+            <a role="button" aria-label="Login button" @click="showModal" class="nav-link home" data-bs-toggle="modal" data-bs-target="#logModal">Login</a>
+            <Login v-show="isModalVisible" @close="closeModal" />
           </li>
           <!-- my profile dropdown -->
           <Dropdown title="My profile" :items="services" />
@@ -46,20 +47,23 @@ a.router-link-exact-active {
 <script>
 import Dropdown from "./TheDropdown.vue";
 import Logo from "@/assets/logo.svg";
+import Login from "@/views/Login.vue";
 
 export default {
   name: "navbar",
   components: {
-    Dropdown
+    Dropdown,
+    Login
   },
   data() {
     return {
       isActive: false,
       show: true,
+      isModalVisible: false,
       services: [
       {
         title: "Profile",
-        link: "#"
+        link: "/login"
       },
       {
         title: "Logout",
@@ -72,6 +76,12 @@ export default {
   methods: {
     toggleNavbar() {
       this.show = !this.show
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
     }
   }
 }
