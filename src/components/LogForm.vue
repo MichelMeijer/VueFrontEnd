@@ -45,11 +45,11 @@
   export default {
     name: 'LogModal',
     methods: {
-      close() {
-        this.$emit('close');
-      },
-    },
-  };
+      close () {
+         this.$emit('close');
+      }
+   } 
+  }
 </script>
 
 <style>
