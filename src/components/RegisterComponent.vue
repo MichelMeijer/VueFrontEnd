@@ -30,7 +30,7 @@
       </div>
           <div class="card-footer mx-auto bg-transparent">
           <!-- Button trigger modal -->
-            <button role="button" aria-label="Register button" id="recruiter" @click="showModal" class="btn btn-outline-success h5" data-bs-toggle="modal" data-bs-target="#myModal">REGISTER</button>
+            <button role="button" aria-label="Register button" id="company" @click="showModal" class="btn btn-outline-success h5" data-bs-toggle="modal" data-bs-target="#myModal">REGISTER</button>
           <Register v-show="isModalVisible" @close="closeModal" />
           </div>
         </div>
@@ -48,13 +48,12 @@
           </div>
           <div class="card-footer mx-auto bg-transparent">
           <!-- Button trigger modal -->
-            <button role="button" aria-label="Register button" id="recruiter" @click="showModal" class="btn btn-outline-success h5" data-bs-toggle="modal" data-bs-target="#myModal">SIGN UP</button>
+            <button role="button" aria-label="Register button" id="jobSeeker" @click="showModal" class="btn btn-outline-success h5" data-bs-toggle="modal" data-bs-target="#myModal">SIGN UP</button>
           <Register v-show="isModalVisible" @close="closeModal" />
           </div>
         </div>
       </div>
     </div>
-
       <div id="accountType" hidden></div>
     </div>
   </div>
@@ -69,7 +68,7 @@ import Register from '@/components/RegForm.vue';
 export default {
   name: "register",
   components: {
-      Register,
+      Register
     },
   data: function () {
     return {
@@ -82,10 +81,12 @@ export default {
     methods: {
       showModal() {
         this.isModalVisible = true;
+        let userType = event.target.id;
+        console.log(userType);
       },
       closeModal() {
         this.isModalVisible = false;
-      }
+      },
     },
 };
 </script>

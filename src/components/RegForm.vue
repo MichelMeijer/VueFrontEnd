@@ -12,15 +12,19 @@
             <form class="row justify-content-center" id="regForm">
             <div class="col-md-10 mb-3 needs-validation novalidate">
               <label for="emailAddress" class="form-label h4">Email</label>
-              <input type="email" class="form-control py-3" id="emailAddress" placeholder="name@email.com" autocomplete=email name="email">
+              <!-- <input type="text" class="form-control py-3" id="emailAddress" v-model="state.email" placeholder="name@email.com"> -->
+              <input type="text" class="form-control py-3" id="emailAddress" v-model="email" placeholder="name@email.com">
             </div>
-            <div id="formMessage" class="text-center mb-3">
+            <div id="formMessage" class="invalid-feedback text-center mb-3">
+              <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
             </div>
             <div class="col-md-10 mb-3">
               <label for="newPassword" class="form-label h4">Password (8 or more characters)</label>
-              <input type="password" class="form-control py-3" id="newPassword" placeholder="password" autocomplete=new-password name="password">
+              <!-- <input type="password" class="form-control py-3" id="newPassword" v-model="state.password.password" placeholder="password"> -->
+              <input type="password" class="form-control py-3" id="newPassword" v-model="password.password" placeholder="password">
             </div>
-            <div id="formMessage2" class="text-center mb-3">
+            <div id="formMessage2" class="invalid-feedback text-center mb-3">
+              <span v-if="v$.password.password.$error">{{ v$.password.password.$errors[0].$message }}</span>
             </div>
           
             <div class="modal-footer">
@@ -29,7 +33,7 @@
               <label for="signUpButton" class="form-label">By clicking "Sign Up" now, you agree to our <a class="link text-dark font-weight-bold" href="#" aria-label="Privacy Policy link">Privacy Policy</a> and <a class="link text-dark font-weight-bold" href="#" aria-label="Cookie Policy link">Cookie Policy.</a></label>
             </div>
             <div class="col-12 text-center pt-3">
-              <button type="submit" class="btn btn-success px-4 h3 font-weight-bold" id="signUpButton">Sign Up</button>
+              <button type="submit" class="btn btn-success px-4 h3 font-weight-bold" id="signUpButton" @click="submitForm">Sign Up</button>
             </div>
         </div>
         </div>
@@ -42,14 +46,59 @@
 </template>
 
 <script>
-  export default {
+import useVuelidate from '@vuelidate/core';
+import { required, email, minLength, helpers } from '@vuelidate/validators';
+
+export default {
     name: 'Modal',
-    methods: {
+    setup() {
+      return { 
+        v$: useVuelidate() 
+      }
+  },
+  data() {
+    return {
+      email: "",
+      password: {
+        password: "",
+      },
+    };
+},
+    methods:{
       close() {
         this.$emit('close');
       },
+       async submitForm() {
+         const isFormCorrect = await this.v$.$validate(); // checks all inputs
+
+         if (!isFormCorrect) { // if ANY fail validation
+            alert("Form failed validation");
+          } else {
+            alert("Form succesfully submitted");
+          }
+      }
     },
-  };
+    validations() {
+      return {
+        email: { email,
+          required: helpers.withMessage('This field cannot be empty', required) 
+          },
+        password: {
+          password: { required, 
+            minLength: helpers.withMessage( 
+              ({
+                $invalid,
+                $params,
+                $model
+              }) => `This field has a value of '${$model}' but must have a min length of ${$params.min} so it is ${$invalid ? 'invalid' : 'valid'}`,
+              minLength(8),
+            )
+          }
+        }
+      }
+    }
+}
+
 </script>
 
 <style>
