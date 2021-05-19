@@ -22,3 +22,21 @@
   </div>
 </footer>
 </template>
+
+<style scoped>
+  #footer.jumbotron {
+    display: flex;
+    color: #fff;
+    font-weight: 500;
+    min-width: 100%;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  @media (min-width: 992px) {
+    .page-footer {
+      flex-shrink: 0;
+      margin-bottom: 0;
+      min-width: 100vh;
+    }
+  }
+</style>
