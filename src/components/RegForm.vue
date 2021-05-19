@@ -9,22 +9,17 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" @click="close" aria-label="Close modal"> X </button>
             </div>
             <div class="modal-body">
-            <form class="row justify-content-center" id="regForm">
+            <form class="row justify-content-center" id="regForm" method="get">
             <div class="col-md-10 mb-3 needs-validation novalidate">
               <label for="emailAddress" class="form-label h4">Email</label>
-              <!-- <input type="text" class="form-control py-3" id="emailAddress" v-model="state.email" placeholder="name@email.com"> -->
-              <input type="text" class="form-control py-3" id="emailAddress" v-model="email" placeholder="name@email.com">
-            </div>
-            <div id="formMessage" class="invalid-feedback text-center mb-3">
+              <input type="text" class="form-control py-3" id="emailAddress" v-model="state.email" placeholder="name@email.com" @click="validateForm">
               <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
             </div>
+
             <div class="col-md-10 mb-3">
               <label for="newPassword" class="form-label h4">Password (8 or more characters)</label>
-              <!-- <input type="password" class="form-control py-3" id="newPassword" v-model="state.password.password" placeholder="password"> -->
-              <input type="password" class="form-control py-3" id="newPassword" v-model="password.password" placeholder="password">
-            </div>
-            <div id="formMessage2" class="invalid-feedback text-center mb-3">
-              <span v-if="v$.password.password.$error">{{ v$.password.password.$errors[0].$message }}</span>
+              <input type="password" class="form-control py-3" id="newPassword" v-model="state.password" placeholder="password" @click="validateForm">
+              <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
             </div>
           
             <div class="modal-footer">
@@ -46,54 +41,60 @@
 </template>
 
 <script>
-import useVuelidate from '@vuelidate/core';
+import useValidate from '@vuelidate/core';
 import { required, email, minLength, helpers } from '@vuelidate/validators';
+import { reactive, computed } from 'vue';
 
 export default {
     name: 'Modal',
     setup() {
-      return { 
-        v$: useVuelidate() 
-      }
+        const state = reactive ({
+          email: "",
+          password: ""
+        })
+        const letter = helpers.regex('letter', /[A-Z]/);
+        const number = helpers.regex('number', /\d/);
+        const capitalLetter = (value) => value.includes(letter);
+        const containsNum = (value) => value.includes(number);
+        const rules = computed(() => {
+          return {
+            email: { required, email },
+            password: { required, 
+              minLength: minLength(8),
+              capitalLetter: helpers.withMessage('Password should contain at least one capital letter', capitalLetter),
+              containsNum: helpers.withMessage('Password should contain at least one number', containsNum)
+            }
+          }
+          })
+          const v$ = useValidate(rules, state)
+
+          return {
+            state, 
+            v$
+          }
   },
-  data() {
-    return {
-      email: "",
-      password: {
-        password: "",
-      },
-    };
-},
     methods:{
       close() {
         this.$emit('close');
       },
-       async submitForm() {
-         const isFormCorrect = await this.v$.$validate(); // checks all inputs
+      // postData(e) {
+      //   console.log(this.posts)
 
-         if (!isFormCorrect) { // if ANY fail validation
-            alert("Form failed validation");
-          } else {
-            alert("Form succesfully submitted");
-          }
-      }
-    },
-    validations() {
-      return {
-        email: { email,
-          required: helpers.withMessage('This field cannot be empty', required) 
-          },
-        password: {
-          password: { required, 
-            minLength: helpers.withMessage( 
-              ({
-                $invalid,
-                $params,
-                $model
-              }) => `This field has a value of '${$model}' but must have a min length of ${$params.min} so it is ${$invalid ? 'invalid' : 'valid'}`,
-              minLength(8),
-            )
-          }
+      //   if (!this.passError) {
+      //     console.log(this.password);
+      //   }
+      //   this.axios.get("http://localhost:3000/api/user", this.posts)
+      //   .then((result) => {
+      //     console.warn(result)
+      //   })
+      //   e.preventDefault();
+      // },
+      validateForm() {
+        this.v$.$validate()
+      },
+      submitForm() { //to be deleted in production
+        if (!this.v$.$error) {
+        alert("Form succesfully submitted");
         }
       }
     }

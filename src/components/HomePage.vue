@@ -35,7 +35,7 @@
 <script>
 import HeaderImg from "@/assets/img/headerPic.jpg";
 import SearchMenu from "./TheSearchMenu.vue";
-import Register from '@/components/RegForm.vue';
+import Register from "@/components/RegForm.vue";
 
 export default {
   name: 'home',
@@ -59,3 +59,28 @@ export default {
     },
 }
 </script>
+
+<style>
+   @media (min-width: 1200px) and (max-width: 1400px) {
+  .container-sm {
+   background-color: #fff;
+   padding-bottom: 1rem;
+   border: 0.5rem;
+   -webkit-box-shadow: 0.5rem 0.5rem 0.5rem #a3a4a5;
+   -moz-box-shadow: 0.5rem 0.5rem 0.5rem #a3a4a5;
+   box-shadow: 0.5rem 0.5rem 0.5rem #a3a4a5;
+   height: 22rem;
+  }
+}
+ @media (min-width: 1400px) {
+  .container-sm {
+    background-color: #fff;
+    padding-bottom: 1rem;
+    border: 0.5rem;
+    -webkit-box-shadow: 0.5rem 0.5rem 0.5rem #a3a4a5;
+    -moz-box-shadow: 0.5rem 0.5rem 0.5rem #a3a4a5;
+    box-shadow: 0.5rem 0.5rem 0.5rem #a3a4a5;
+    height: 18rem;
+  }
+}
+</style>
