@@ -1,6 +1,6 @@
 <template>
       <div class="menu-item drop_down_search dropdown py-1" @click="isOpen = !isOpen">
-        <a class="link dropdown-toggle h5 text-dark fw-bolder px-5" href="#" id="DropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="link dropdown-toggle h5 text-dark fw-bolder px-5" href="javascript:void(0)" id="DropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   {{ title }}
         </a>
         <transition name="fade" appear>
@@ -44,7 +44,7 @@ export default {
 .fade-enter,
 .fade-leave-to {
     opacity: 0;
-    transfrom: translateX(100vw);
+    transform: translateX(100vw);
   }
 
 div.menu-item {
