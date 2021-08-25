@@ -3,11 +3,8 @@
   <div class="row justify-content-around">
     <div class="col-md h5">
       <div class="p-2">About</div>
-      <hr class="w-25">
       <div class="p-2">Blog</div>
-      <hr class="w-25">
       <div class="p-2">Terms</div>
-      <hr class="w-25">
     </div>
     <div class="col sm-auto">
         <ul class="bd-footer-links inline-flex px-0">

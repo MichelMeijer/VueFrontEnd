@@ -44,11 +44,12 @@
 <script>
   export default {
     name: 'LogModal',
-    methods: {
-      close () {
-         this.$emit('close');
+    methods:{
+      close() {
+        document.getElementById("logModal").style.display = "none";
+        // this.$emit("close")
       }
-   } 
+    }
   }
 </script>
 
