@@ -20,5 +20,6 @@ export default {
 .register {
   display: flex;
   z-index: 2;
+  min-height: 65vh;
 }
 </style>

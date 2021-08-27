@@ -9,7 +9,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" @click="close" aria-label="Close modal"> X </button>
             </div>
             <div class="modal-body">
-            <form class="row justify-content-center" id="regForm" method="get">
+            <form class="row justify-content-center" id="regForm" method="post" @submit.prevent="postData">
             <div class="col-md-10 mb-3 needs-validation novalidate">
               <label for="emailAddress" class="form-label h4">Email</label>
               <input type="text" class="form-control py-3" id="emailAddress" v-model="state.email" placeholder="name@email.com" @click="validateForm">
@@ -44,6 +44,7 @@
 import useValidate from '@vuelidate/core';
 import { required, email, minLength, helpers } from '@vuelidate/validators';
 import { reactive, computed } from 'vue';
+import axios from 'axios';
 
 export default {
     name: 'Modal',
@@ -73,22 +74,29 @@ export default {
             v$
           }
   },
+    data() {
+      return{
+      postData() {
+        const url = "http://localhost:3000/api/user";
+        let headers = new Headers();
+
+        headers.append ('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
+
+        axios.post(url, { email: this.email, password: this.password, crossdomain: true })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch(error => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      })
+      }
+      }
+    },
     methods:{
       close() {
         this.$emit('close');
       },
-      // postData(e) {
-      //   console.log(this.posts)
-
-      //   if (!this.passError) {
-      //     console.log(this.password);
-      //   }
-      //   this.axios.get("http://localhost:3000/api/user", this.posts)
-      //   .then((result) => {
-      //     console.warn(result)
-      //   })
-      //   e.preventDefault();
-      // },
       validateForm() {
         this.v$.$validate()
       },
