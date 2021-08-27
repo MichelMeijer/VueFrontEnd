@@ -43,9 +43,13 @@
 
 <script>
   export default {
-    name: 'LogModal',
-    methods:{
-      close() {
+    data() {
+      return {
+        name: 'LogModal'
+      }
+    },
+    methods: {
+      close: function() {
         document.getElementById("logModal").style.display = "none";
         // this.$emit("close")
       }

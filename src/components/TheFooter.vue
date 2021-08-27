@@ -10,7 +10,11 @@
         <ul class="bd-footer-links inline-flex px-0">
           <li class="d-inline p-3 h5">Contact us</li>
           <div class="col-sm p-2 h4">
-          <a href="#" class="text-success text-decoration-none"><i class="fa fa-envelope fa-lg text-success py-2" aria-hidden="true"></i> | </a>
+          <a href="#" class="text-success text-decoration-none" @click="showForm"><i class="fa fa-envelope fa-lg text-success py-2" aria-hidden="true"></i> | </a>
+          
+          <FormModal v-show="isModalVisible" @close="closeForm" />
+
+          
           <a href="#" class="text-success text-decoration-none"><i class="fa fa-twitter-square fa-lg text-success py-2" aria-hidden="true"></i> | </a>
           <a href="#" class="text-success text-decoration-none"><i class="fa fa-facebook-square fa-lg text-success py-2" aria-hidden="true"></i> | </a>
           <a href="#" class="text-success text-decoration-none"><i class="fa fa-instagram fa-lg text-success py-2" aria-hidden="true"></i> | </a>
@@ -26,6 +30,31 @@
   </div>
 </footer>
 </template>
+
+<script>
+import FormModal from "./ContactForm.vue";
+
+export default{
+  components: {
+    FormModal
+  },
+
+  data() {
+    return {
+       name: 'FormModal',
+       isModalVisible: false,
+    }
+  },
+  methods:{
+    showForm() {
+      this.isModalVisible = true;
+    },
+    closeForm() {
+      this.isModalVisible = false;
+    }
+  },
+}
+</script>
 
 <style scoped>
   #footer.jumbotron {
