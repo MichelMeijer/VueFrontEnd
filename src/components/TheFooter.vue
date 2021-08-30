@@ -4,7 +4,7 @@
     <div class="col-md h5">
       <div class="p-2">About</div>
       <div class="p-2">Blog</div>
-      <div class="p-2">Terms</div>
+      <div class="p-2"><a href="/terms" class="text-dark text-decoration-none">Terms &amp; Conditions</a></div>
     </div>
     <div class="col sm-auto">
         <ul class="bd-footer-links inline-flex px-0">
