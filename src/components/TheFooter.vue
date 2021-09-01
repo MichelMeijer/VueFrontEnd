@@ -2,7 +2,7 @@
 <footer class="jumbotron text-center page-footer bg-light">
   <div class="row justify-content-around">
     <div class="col-md h5">
-      <div class="p-2">About</div>
+      <div class="p-2"><a href="/about" class="text-dark text-decoration-none">About</a></div>
       <div class="p-2">Blog</div>
       <div class="p-2"><a href="/terms" class="text-dark text-decoration-none">Terms &amp; Conditions</a></div>
     </div>
