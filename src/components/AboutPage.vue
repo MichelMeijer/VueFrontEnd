@@ -31,7 +31,7 @@
 </div>
 </div>
 </div>
-  <div class="container-fluid pt-2">
+<div class="container-fluid pt-2">
 <div class="row text-center text bg-light">
         <div class="col-md-12">
           <h1 class="mb-3 pt-2">Shortly about the services</h1>
@@ -51,27 +51,30 @@
           We would like to stay in touch with you, so in case of questions or suggestions, please contact us.
           </p>
           <hr class="text-success">
-          <div class="container-md px-2">
+       </div>
+      </div>
+    </div>
+        <div class="container-fluid text-center p-5">
           <h4 class="mb-3 pt-2">For more information</h4>
           <div class="row d-flex justify-content-center">
-            <div class="col-md-6 p-2 d-flex justify-content-evenly">
+            <div class="col-md-6 p-2 mb-2 d-flex justify-content-evenly">
                 <a class="btn btn-outline-success" type="button" href="/services">Services page</a>
                 <a class="btn btn-outline-success" type="button" href="/how">How page</a>
             </div>
+
             <h4 class="mb-3 pt-2">If you want to register or login</h4>
           <div class="row d-flex justify-content-center">
-            <div class="col-md-6 p-2 d-flex justify-content-evenly">
+            <div class="col-md-6 p-2 mb-2 d-flex justify-content-evenly">
                 <a class="btn btn-outline-success" type="button" href="/register">Register</a>
-                <a class="btn btn-outline-success" type="button" href="/login">Login</a>
+                <a class="btn btn-outline-success" role="button" aria-label="Login button" @click="showModal" data-bs-toggle="modal" data-bs-target="#logModal">Login</a>
+                <Login v-show="isModalVisible" @close="closeModal" />
             </div>
+
            <h4 class="mb-3 pt-2">Back to Home page</h4>
           <div class="row d-flex justify-content-center">
             <div class="col-md-12 p-2">
                 <a class="btn btn-outline-success" type="button" href="/">Go back to home page</a>
             </div>
-            </div>
-            </div>
-          </div>
           </div>
         </div>
       </div>
@@ -108,17 +111,38 @@ p, a{
  font-size: 25px;
 }
 }
-
-  .card-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+.card-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.section {
+  border-radius: 5px;
+}
 </style>
 
 <script>
+import Login from "@/views/Login.vue";
+
 export default {
   name: "AboutPage",
+   components: {
+    Login
+  },
+  data() {
+    return {
+      isModalVisible: false
+    }
+  },
+  methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+      // document.getElementById("logModal").style.display = "none";
+    }
+  }
 };
 </script>
